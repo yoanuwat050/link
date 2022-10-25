@@ -1,0 +1,65 @@
+{% extends "mch_link/base.html" %} {% load static %}
+
+{% block profile_loginname %}
+{% if user.is_authenticated %}
+User: {{ user.first_name }} {{ user.last_name }}
+
+{% endif %}
+{% endblock %}
+
+{% block all_content %}
+
+
+<div class="col-md-12">
+  <div class="card">
+    <header class="card-heading ">
+      <h2 class="card-title">แก้ไขโปรไฟล์</h2>
+
+    </header>
+    <div class="card-body">
+      <form class="form-horizontal"  method="POST">
+        {% csrf_token %}
+        <div class="form-group is-empty">
+          
+          <label class="col-xs-4 control-label">หมายเลขบัตรประชาชน :</label>
+          <div class="col-xs-8">
+            <input type="text" class="form-control" name="empCID" maxlength="13" required="" id="id_empCID" value="{{ user.empuser}}">
+          </div>
+         
+          <label class="col-xs-4 control-label">ห้องทำงาน :</label>
+          <div class="col-xs-8">
+            <input type="text" class="form-control" name="empDepartment" maxlength="200" required="" id="id_empDepartment" value="{{ user.empuser.empDepartment}}">
+          </div>
+          <label class="col-xs-4 control-label">เบอร์โทรสำนักงาน :</label>
+          <div class="col-xs-8">
+            <input type="text" class="form-control" name="departmentPhone" maxlength="200" required="" id="id_departmentPhone" value="{{ user.empuser.departmentPhone}}">
+          </div>
+          <label class="col-xs-4 control-label">มือถือ :</label>
+          <div class="col-xs-8">
+            <input type="text" class="form-control" name="empPhone" maxlength="200" required="" id="id_empPhone" value="{{ user.empuser.empPhone}}">
+          </div>
+          <label class="col-xs-4 control-label">Line Token :</label>
+          <div class="col-xs-8">
+            <input type="text" class="form-control" name="empLineToken" maxlength="200" required="" id="id_empLineToken" value="{{ user.empuser.empLineToken}}">
+          </div>
+         
+      
+        </div>
+
+        
+      
+        <div class="form-group is-empty">
+       
+          <div class="col-md-12">
+            <button class="btn btn-success btn-block m-t-40" type="submit">บันทึก</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+

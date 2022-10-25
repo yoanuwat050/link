@@ -1,0 +1,112 @@
+{% extends "mch_link/base.html" %} {% load static %}
+
+{% block profile_loginname %}
+{% if user.is_authenticated %}
+User: {{ user.first_name }} {{ user.last_name }}
+
+{% endif %}
+{% endblock %}
+
+
+{% block topic2 %}
+{% if user.is_authenticated %}
+
+
+{% endif %}
+{% endblock %}
+
+
+
+
+
+
+
+{% block staff_content %}
+
+<div class="col-lg-12">
+  <div class="card">
+    <header class="card-heading border-bottom">
+      <h2 class="card-title">การทำงานของเจ้าหน้าที่</h2>
+      <small>Status Summary</small>
+      <div class="row">
+        <div class="col-xs-3"><center><button class="btn btn-danger btn-xs">WAIT</button></center></div>
+        <div class="col-xs-3"><center><button class="btn btn-info btn-xs">RECIEVE</button></center></div>
+        <div class="col-xs-3"><center><button class="btn btn-warning btn-xs">WORKING</button></center></div>
+        <div class="col-xs-3"><center><button class="btn btn-success btn-xs">DONE</button></center></div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3"> <center>{{ wait }}</center> </div>
+        <div class="col-xs-3"><center>{{ recieve }}</center></div>
+        <div class="col-xs-3"><center>{{ work }}</center></div>
+        <div class="col-xs-3"><center>{{ done }}</center></div>
+      </div>
+      <ul class="card-actions icons right-top">
+        <li>
+          <a href="javascript:void(0)" data-toggle="refresh">
+            <i class="zmdi zmdi-refresh-alt"></i>
+          </a>
+        </li>
+        
+      </ul>
+    </header>
+    <div class="card-body">
+      
+
+    </div>
+    <div class="card-body p-0">
+      <ul class="list-group ">
+        {% for Repair in staff %}
+        <li class="list-group-item ">
+          <span class="pull-left"><img src="{{Repair.repairStaff.empuser.avatar.url}}" alt=""
+              class="img-circle max-w-40 m-r-10 "></span>
+          <div class="list-group-item-body">
+
+            <div class="list-group-item-heading">{{ Repair.repairStaff.first_name }} {{ Repair.repairStaff.last_name }}</div>
+            <div class="list-group-item-text">
+
+              <div class="row">
+               
+                <div class="col-md-1 col-xs-4">
+                  <a href="{% url 'repair:repair-detail' slug=Repair.slug %}">
+                  <button 
+                  {% if Repair.repairStatus.id == 1 %}
+                  class="btn btn-danger btn-xs"
+                  
+                  {% endif%}
+                    {% if Repair.repairStatus.id == 2 %}
+                    class="btn btn-warning btn-xs"
+                    
+                    {% endif%}
+                    {% if Repair.repairStatus.id == 3 %}
+                    class="btn btn-info btn-xs"
+                    
+                    {% endif%}
+                    {% if Repair.repairStatus.id == 4 %}
+                    class="btn btn-success btn-xs"
+                    
+                    {% endif%}
+                   >{{Repair.repairStatus}}</button></a>
+                  
+                  
+                  </div>
+                <div class="col-md-1 col-xs-4">{{Repair.repairRequester.empuser.empDepartment}}</div>
+                <div class="col-md-2 col-xs-4">{{Repair.repairDetail}}</div>
+                <div class="col-md-8 col-xs-4">{{Repair.repairCause}}</div>
+                
+              </div>
+            </div>
+          </div>
+        </li>
+
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+{% block content %}
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "mch_link/base.html" %}  {% load static %} 
+{% block topic2 %}
+
+<h2>รายละเอียด</h2>
+{% endblock %}
+{% block all_content %}
+<div class="col-md-12">
+    <ul class="blocks blocks-100 blocks-xxl-12 blocks-lg-12 blocks-md-12 card-notes" id="masonry" style="position: relative;">
+    <li class="masonry-item" style="position :relative">
+      <div id="note_id_0" class="bg-white">
+        <div class="card card-note transparent">
+          <header class="card-heading">
+            <div class="row">
+              <div class="col-sm-6"><h2 class="card-title">{{repair.repairDetail}}</h2></div>
+        
+             
+            </div>
+            <div class="row">
+              <div class="col-md-6"><small>เลขที่ :  0{{repair.repairDetail.repairType.id}}0{{repair.repairDetail.id}}0{{repair.id}} เวลาที่ขอรับบริการ : {{repair.pub_date}} </small>
+              </div>
+            </div>
+                  
+          </header>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <p>ผู้แจ้ง : {{repair.repairRequester}} {{repair.repairRequester.empuser.empDepartment}} โทร. {{repair.repairRequester.empuser.departmentPhone}}</p> <p>มือถือ.{{repair.repairRequester.empuser.empPhone}} </p>
+                <p>ผู้รับงาน : {{repair.repairStaff}} สถานะ : {{repair.repairStatus}} </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <h4>อาการเบื้องต้น</h4>
+                  <p>- {{repair.repairCause}}</p></div>
+                
+                <div class="col-md-6">
+                  
+                  <h4>การแก้ไข :</h4>
+                  <p>- {{repair.repairDesc}}</p>
+                   
+                   
+                    <p>เวลาแจ้ง : {{repair.pub_date}}</p>
+                    <p>เวลารับงาน : {{repair.recieve_time}}</p>
+                    <p>เวลาเริ่มดำเนินการ : {{repair.work_time}}</p>
+                    <p>เวลาสิ้นสุดการทำงาน : {{repair.done_time}}</p>
+                    <p>คะแนนจากผู้รับบริการ : {{repair.repairReview.reviewscore}}</p>
+                    <p>ข้อเสนอแนะจากผู้รับบริการ : {{repair.repairReviewDetail}}</p>
+
+                </div>
+              
+
+            
+            
+       
+        
+          </div>
+         
+          </div>
+        </div>
+      </li>
+    
+        </ul>
+      </div>
+    
+
+{% endblock %}
+
+
+

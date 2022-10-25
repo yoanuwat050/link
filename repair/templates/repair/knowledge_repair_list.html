@@ -1,0 +1,100 @@
+{% extends "mch_link/base.html" %}  {% load static %} 
+
+{% block profile_loginname %}
+{% if user.is_authenticated %}
+     User: {{ user.first_name }} {{ user.last_name }}
+    
+   {% endif %}
+{% endblock %}
+{% block navsearch %} 
+
+<form role='search' class='navbar-form' id='navbar_form' method='GET' action='.'>
+
+  <div class='form-group'>
+    <input type='text' placeholder="Search and press enter..." class='form-control' id='navbar_search' autocomplete='off' name='q' value='{{ request.GET.q }}'> 
+    <i data-navsearch-close class="zmdi zmdi-close close-search"></i>
+  </div>
+  <button type="submit" class="hidden btn btn-default">Submit</button>
+
+</form>
+{% endblock %}
+
+
+{% block topic2 %}
+{% if user.is_authenticated %}
+<div class="col-md-12">
+    <form class='form' method='GET' action='.'>
+    <input class="form-control" type='text' name='q' placeholder="ค้นหา" value='{{ request.GET.q }}'>
+  </form>
+</div>
+
+
+
+{% endif %}
+{% endblock %}
+
+
+<!--
+{% block sideleft %} 
+<li><a href=""><i class="zmdi zmdi-view-dashboard"></i>Dashboard</a></li>
+
+{% endblock %}
+-->
+
+
+  {% block staff_content %}
+
+       
+
+  <div class="col-lg-12">
+    <div class="card">
+      <header class="card-heading border-bottom">
+        <h2 class="card-title">วิธีแก้ปัญหา</h2>
+        <small>ระบุรายการในช่องค้นหา</small>
+        <ul class="card-actions icons right-top">
+          <li>
+            <a href="javascript:void(0)" data-toggle="refresh">
+              <i class="zmdi zmdi-refresh-alt"></i>
+            </a>
+          </li>
+          
+        </ul>
+      </header>
+      <div class="card-body p-0">
+        <ul class="list-group ">
+          {% for Repair in knowledge_repair_list %}
+          <li class="list-group-item ">
+            
+            <div class="list-group-item-body">
+  
+              <div class="list-group-item-heading">
+                <a href="{% url 'repair:repair-detail' slug=Repair.slug %}">
+                  <button class="btn btn-info btn-xs">{{Repair.repairDetail}} <div class="ripple-container"></div></button>
+                </a>
+              </div>
+              <div class="list-group-item-text">
+  
+                <div class="row">
+                  <div class="col-md-12 col-xs-12">รายละเอียด : {{Repair.repairCause}}</div>
+                 
+             
+          
+                </div>
+              </div>
+            </div>
+          </li>
+  
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+  
+
+
+{% block content %}
+
+{% endblock %}
+
+
